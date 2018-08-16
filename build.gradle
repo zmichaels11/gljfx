@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'demo'
+version '1.0-SNAPSHOT'
+
+project.ext.lwjglVersion = "3.2.0"
+project.ext.jomlVersion = "1.9.9"
+project.ext.slf4jVersion = "1.7.+"
+
+import org.gradle.internal.os.OperatingSystem
+
+switch ( OperatingSystem.current()) {
+    case OperatingSystem.WINDOWS:
+        project.ext.lwjglNatives = "natives-windows"
+        break
+    case OperatingSystem.LINUX:
+        project.ext.lwjglNatives = "natives-linux"
+        break
+    case OperatingSystem.MAC_OS:
+        project.ext.lwjglNatives = "natives-macos"
+        break
+}
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.lwjgl:lwjgl:$lwjglVersion"
+    compile "org.lwjgl:lwjgl-opengl:$lwjglVersion"
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile "org.joml:joml:$jomlVersion"
+    compile "org.lwjgl:lwjgl-glfw:$lwjglVersion"
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    runtime "org.lwjgl:lwjgl:$lwjglVersion:$lwjglNatives"
+    runtime "org.lwjgl:lwjgl-opengl:$lwjglVersion:$lwjglNatives"
+
+    testRuntime "org.lwjgl:lwjgl-glfw:$lwjglVersion:$lwjglNatives"
+    testRuntime "org.slf4j:slf4j-simple:$slf4jVersion"
+}
