@@ -3,6 +3,12 @@ Embed JavaFX 8 Scene in an OpenGL+GLFW context.
 
 This project uses internal Java8 APIs and __will not__ work on Java9+
 
+## Using this code/Licence
+This project is probably not going to receive much maintenance and can be
+considered abandoned. It is therefore licensed under The Unlicense as 
+__public domain__. If you want to include any of this code in _any_ project, 
+please copy and paste the code from the _demo_ package into your package structure.
+
 ## How it Works
 JavaFX has an _Embedded Window_ object that can be extended to grab redraw events.
 
